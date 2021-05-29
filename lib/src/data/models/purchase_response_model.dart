@@ -14,7 +14,7 @@ class PurchaseResponseModel {
   factory PurchaseResponseModel.fromJson(Map<String, dynamic> json) =>
       PurchaseResponseModel(
         success: json["success"],
-        errorMessage: json["errorMessage"],
+        errorMessage: json["errorMessage"] ?? '',
         customer: CustomerModel.fromJson(json["customer"]),
       );
 
