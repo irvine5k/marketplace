@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:marketplace/src/common/constants/theme.dart';
 
-class TextButtonWidget extends StatelessWidget {
+class RoundedButtonWidget extends StatelessWidget {
   final VoidCallback? onTap;
   final String label;
 
-  const TextButtonWidget({
+  const RoundedButtonWidget({
     Key? key,
     required this.onTap,
     required this.label,

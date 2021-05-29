@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:marketplace/src/common/constants/theme.dart';
+import 'package:marketplace/src/common/widgets/rounded_button_widget.dart';
 
 class Utils {
   static String formatToMonetaryValueFromInteger(
@@ -40,16 +41,13 @@ class Utils {
         builder: (_) => AlertDialog(
           title: Text(
             'Success',
-            style: Theme.of(context)
-                .textTheme
-                .bodyText1!
-                .copyWith(color: AppColors.black),
+            style: TextStyle(fontSize: DesignTokens.fontLG),
           ),
           content: description != null ? Text(description) : null,
           actions: [
-            ElevatedButton(
-              onPressed: onPressed,
-              child: Text(buttonLabel),
+            RoundedButtonWidget(
+              onTap: onPressed,
+              label: buttonLabel,
             ),
           ],
         ),

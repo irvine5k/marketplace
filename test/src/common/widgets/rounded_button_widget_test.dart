@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:marketplace/src/common/widgets/text_button_widget.dart';
+import 'package:marketplace/src/common/widgets/rounded_button_widget.dart';
 
 final _label = 'Label';
 
@@ -17,7 +17,7 @@ void main() {
       },
     );
 
-    await tester.tap(find.byType(TextButtonWidget));
+    await tester.tap(find.byType(RoundedButtonWidget));
 
     expect(clicked, true);
   });
@@ -42,7 +42,7 @@ Future<void> _createWidget(
   await tester.pumpWidget(
     MaterialApp(
       home: Scaffold(
-        body: TextButtonWidget(
+        body: RoundedButtonWidget(
           onTap: onTap,
           label: _label,
         ),

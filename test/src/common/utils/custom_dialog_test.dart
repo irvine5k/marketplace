@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:marketplace/src/common/utils/utils.dart';
-import 'package:marketplace/src/common/widgets/text_button_widget.dart';
+import 'package:marketplace/src/common/widgets/rounded_button_widget.dart';
 
 final _alertDialogTitle = 'Alert Dialog';
 
@@ -16,7 +16,7 @@ void main() {
         clicked = true;
       });
 
-      await tester.tap(find.byType(TextButtonWidget));
+      await tester.tap(find.byType(RoundedButtonWidget));
 
       await tester.pumpAndSettle();
 
@@ -48,7 +48,7 @@ class _Widget extends StatelessWidget {
   const _Widget({Key? key, this.onPressed}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return TextButtonWidget(
+    return RoundedButtonWidget(
       onTap: () => Utils.showCustomDialog(
         context,
         title: _alertDialogTitle,

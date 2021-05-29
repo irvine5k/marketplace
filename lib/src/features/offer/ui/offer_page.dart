@@ -5,7 +5,7 @@ import 'package:marketplace/src/common/models/customer_model.dart';
 import 'package:marketplace/src/common/models/offer_model.dart';
 import 'package:marketplace/src/common/models/product_model.dart';
 import 'package:marketplace/src/common/utils/utils.dart';
-import 'package:marketplace/src/common/widgets/text_button_widget.dart';
+import 'package:marketplace/src/common/widgets/rounded_button_widget.dart';
 import 'package:marketplace/src/features/offer/data/offer_repository.dart';
 import 'package:marketplace/src/features/offer/logic/offer_cubit.dart';
 import 'package:marketplace/src/common/constants/theme.dart';
@@ -47,7 +47,7 @@ class _OfferPageState extends State<OfferPage> {
           child: _ProductDetailsBodyWidget(widget.offer.product),
         ),
         persistentFooterButtons: [
-          TextButtonWidget(
+          RoundedButtonWidget(
             label: 'Buy Now ${Utils.formatToMonetaryValueFromInteger(
               widget.offer.price,
             )}',
