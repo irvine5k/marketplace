@@ -12,11 +12,19 @@ class CustomerCubit extends Cubit<CustomerState> {
 
   Future<void> getCustomer() async {
     try {
+      emit(CustomerState.loading());
+
       final customer = await _repository.getCustomer();
 
       emit(CustomerState.fetched(customer));
     } catch (e) {
       emit(CustomerState.error());
+    }
+  }
+
+  Future<void> setCustomer(CustomerModel? customer) async {
+    if (customer != null) {
+      emit(CustomerState.fetched(customer));
     }
   }
 }

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graphql/client.dart';
+import 'package:marketplace/src/data/models/customer_model.dart';
 import 'package:marketplace/src/data/repositories/customer_repository.dart';
+import 'package:marketplace/src/data/repositories/purchase_repository.dart';
 import 'package:marketplace/src/logic/customer_cubit.dart';
 import 'package:marketplace/src/ui/product_details_page.dart';
 import 'package:marketplace/src/utils/utils.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   final CustomerRepository repository;
@@ -90,16 +94,23 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                             trailing: Icon(Icons.arrow_right_alt),
-                            onTap: () {
-                              Navigator.push(
+                            onTap: () async {
+                              final updatedCustomer =
+                                  await Navigator.push<CustomerModel>(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => OfferDetailsPage(
                                     offer: customer.offers[index],
                                     balance: customer.balance,
+                                    purchaseRepository:
+                                        GraphQLPurchaseRepository(
+                                      Provider.of<GraphQLClient>(context),
+                                    ),
                                   ),
                                 ),
                               );
+
+                              cubit.setCustomer(updatedCustomer);
                             },
                           ),
                         ),
