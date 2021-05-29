@@ -23,12 +23,12 @@ class App extends StatelessWidget {
       graphQlClientNotifier.value,
     );
 
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: AppTheme.theme,
-      home: ValueListenableProvider.value(
-        value: graphQlClientNotifier,
-        child: HomePage(repository: customerRepository),
+    return ValueListenableProvider.value(
+      value: graphQlClientNotifier,
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: AppTheme.theme,
+        home: HomePage(repository: customerRepository),
       ),
     );
   }
