@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:marketplace/theme.dart';
+import 'package:marketplace/src/common/constants/theme.dart';
 
 class TextButtonWidget extends StatelessWidget {
   final VoidCallback? onTap;

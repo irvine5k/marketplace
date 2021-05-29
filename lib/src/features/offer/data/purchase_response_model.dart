@@ -1,4 +1,4 @@
-import 'package:marketplace/src/data/models/customer_model.dart';
+import 'package:marketplace/src/common/models/customer_model.dart';
 
 class PurchaseResponseModel {
   const PurchaseResponseModel({

@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
-
-import 'package:marketplace/src/data/models/offer_model.dart';
+import 'package:marketplace/src/common/models/offer_model.dart';
 
 class CustomerModel extends Equatable {
   const CustomerModel({

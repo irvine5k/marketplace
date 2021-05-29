@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:marketplace/src/data/models/customer_model.dart';
-import 'package:marketplace/src/data/models/offer_model.dart';
-import 'package:marketplace/src/data/models/product_model.dart';
-import 'package:marketplace/src/data/repositories/offer_repository.dart';
-import 'package:marketplace/src/logic/offer_cubit.dart';
-import 'package:marketplace/src/ui/widgets/text_button_widget.dart';
-import 'package:marketplace/src/utils/utils.dart';
-import 'package:marketplace/theme.dart';
+import 'package:marketplace/src/common/models/customer_model.dart';
+import 'package:marketplace/src/common/models/offer_model.dart';
+import 'package:marketplace/src/common/models/product_model.dart';
+import 'package:marketplace/src/common/utils/utils.dart';
+import 'package:marketplace/src/common/widgets/text_button_widget.dart';
+import 'package:marketplace/src/features/offer/data/offer_repository.dart';
+import 'package:marketplace/src/features/offer/logic/offer_cubit.dart';
+import 'package:marketplace/src/common/constants/theme.dart';
 
 class OfferPage extends StatefulWidget {
   final OfferModel offer;

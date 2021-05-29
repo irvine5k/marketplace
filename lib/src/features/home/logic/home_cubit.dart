@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:marketplace/src/data/models/customer_model.dart';
-import 'package:marketplace/src/data/repositories/home_repository.dart';
+import 'package:marketplace/src/common/models/customer_model.dart';
+import 'package:marketplace/src/features/home/data/home_repository.dart';
 
 part 'home_state.dart';
 

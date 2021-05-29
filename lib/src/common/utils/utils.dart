@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:marketplace/theme.dart';
+import 'package:marketplace/src/common/constants/theme.dart';
 
 class Utils {
   static String formatToMonetaryValueFromInteger(

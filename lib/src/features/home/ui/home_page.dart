@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graphql/client.dart';
-import 'package:marketplace/src/data/models/customer_model.dart';
-import 'package:marketplace/src/data/models/offer_model.dart';
-import 'package:marketplace/src/data/repositories/home_repository.dart';
-import 'package:marketplace/src/data/repositories/offer_repository.dart';
-import 'package:marketplace/src/logic/home_cubit.dart';
-import 'package:marketplace/src/ui/offer_page.dart';
-import 'package:marketplace/src/utils/utils.dart';
-import 'package:marketplace/theme.dart';
+import 'package:marketplace/src/common/models/customer_model.dart';
+import 'package:marketplace/src/common/models/offer_model.dart';
+import 'package:marketplace/src/common/utils/utils.dart';
+import 'package:marketplace/src/features/home/data/home_repository.dart';
+import 'package:marketplace/src/features/offer/data/offer_repository.dart';
+import 'package:marketplace/src/features/home/logic/home_cubit.dart';
+import 'package:marketplace/src/features/offer/ui/offer_page.dart';
+import 'package:marketplace/src/common/constants/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 

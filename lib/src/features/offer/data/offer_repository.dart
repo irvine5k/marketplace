@@ -1,6 +1,6 @@
 import 'package:graphql/client.dart';
-import 'package:marketplace/src/data/models/purchase_response_model.dart';
-import 'package:marketplace/src/data/queries/marketplace_queries.dart';
+import 'package:marketplace/src/features/offer/data/purchase_response_model.dart';
+import 'package:marketplace/src/common/api/marketplace_queries.dart';
 
 abstract class OfferRepository {
   Future<PurchaseResponseModel> purchase(String offerId);

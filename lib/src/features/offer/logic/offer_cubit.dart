@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:marketplace/src/data/models/purchase_response_model.dart';
-import 'package:marketplace/src/data/repositories/offer_repository.dart';
+import 'package:marketplace/src/features/offer/data/purchase_response_model.dart';
+import 'package:marketplace/src/features/offer/data/offer_repository.dart';
 
 part 'offer_state.dart';
 

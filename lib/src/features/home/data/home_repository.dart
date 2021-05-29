@@ -1,6 +1,6 @@
 import 'package:graphql/client.dart';
-import 'package:marketplace/src/data/models/customer_model.dart';
-import 'package:marketplace/src/data/queries/marketplace_queries.dart';
+import 'package:marketplace/src/common/models/customer_model.dart';
+import 'package:marketplace/src/common/api/marketplace_queries.dart';
 
 abstract class HomeRepository {
   Future<CustomerModel> getCustomer();
