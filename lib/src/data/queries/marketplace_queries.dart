@@ -1,5 +1,5 @@
-class MarketplaceQueries {
-  static const String customers = '''
+class Queries {
+  static const String customer = '''
     query customer {
     viewer {
       ... on Customer {

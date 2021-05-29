@@ -1,6 +1,8 @@
-import 'package:marketplace/src/features/marketplace/data/models/offer_model.dart';
+import 'package:equatable/equatable.dart';
 
-class CustomerModel {
+import 'package:marketplace/src/data/models/offer_model.dart';
+
+class CustomerModel extends Equatable {
   const CustomerModel({
     required this.id,
     required this.name,
@@ -27,4 +29,7 @@ class CustomerModel {
         "balance": balance,
         "offers": List<dynamic>.from(offers.map((x) => x.toJson())),
       };
+
+  @override
+  List<Object?> get props => [id, name, balance, offers];
 }

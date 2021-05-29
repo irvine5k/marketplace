@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:graphql/client.dart';
-import 'package:marketplace/src/shared/authentication/authentication_service.dart';
+import 'package:marketplace/src/data/repositories/token_repository.dart';
 
 class GraphQlClientFactory {
-  final AuthenticationService authenticationService;
+  final TokenRepository authenticationService;
 
   const GraphQlClientFactory({required this.authenticationService});
 
@@ -23,7 +23,7 @@ class GraphQlClientFactory {
 
     return GraphQLClient(
       link: link,
-      cache: GraphQLCache(store: HiveStore()),
+      cache: GraphQLCache(store: InMemoryStore()),
     );
   }
 }
