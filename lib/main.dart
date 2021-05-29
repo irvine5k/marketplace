@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:graphql/client.dart';
+import 'package:marketplace/src/shared/authentication/authentication_service.dart';
+import 'package:marketplace/src/shared/graphql/graphql_factory.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -7,12 +11,21 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final graphQlClientNotifier = GraphQlClientFactory(
+      authenticationService: MockAuthenticationService(),
+    ).getClientValueNotifier(
+      'https://staging-nu-needful-things.nubank.com.br/query',
+    );
+
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: ChangeNotifierProvider<ValueNotifier<GraphQLClient>>.value(
+        value: graphQlClientNotifier,
+        child: MyHomePage(title: 'Flutter Demo Home Page'),
+      ),
     );
   }
 }
