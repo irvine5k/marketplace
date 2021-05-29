@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:marketplace/src/data/repositories/customer_repository.dart';
+import 'package:marketplace/src/data/repositories/home_repository.dart';
 import 'package:marketplace/src/data/repositories/token_repository.dart';
 import 'package:marketplace/src/data/api/graphql_factory.dart';
 import 'package:marketplace/src/ui/home_page.dart';

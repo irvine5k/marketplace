@@ -3,18 +3,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marketplace/src/data/models/customer_model.dart';
 import 'package:marketplace/src/data/models/offer_model.dart';
 import 'package:marketplace/src/data/models/product_model.dart';
-import 'package:marketplace/src/data/repositories/purchase_repository.dart';
-import 'package:marketplace/src/logic/purchase_cubit.dart';
+import 'package:marketplace/src/data/repositories/offer_repository.dart';
+import 'package:marketplace/src/logic/offer_cubit.dart';
 import 'package:marketplace/src/ui/widgets/text_button_widget.dart';
 import 'package:marketplace/src/utils/utils.dart';
 import 'package:marketplace/theme.dart';
 
-class OfferDetailsPage extends StatefulWidget {
+class OfferPage extends StatefulWidget {
   final OfferModel offer;
   final int balance;
-  final PurchaseRepository purchaseRepository;
+  final OfferRepository purchaseRepository;
 
-  const OfferDetailsPage({
+  const OfferPage({
     Key? key,
     required this.offer,
     required this.balance,
@@ -22,11 +22,11 @@ class OfferDetailsPage extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _OfferDetailsPageState createState() => _OfferDetailsPageState();
+  _OfferPageState createState() => _OfferPageState();
 }
 
-class _OfferDetailsPageState extends State<OfferDetailsPage> {
-  late PurchaseCubit purchaseCubit = PurchaseCubit(widget.purchaseRepository);
+class _OfferPageState extends State<OfferPage> {
+  late OfferCubit purchaseCubit = OfferCubit(widget.purchaseRepository);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class _OfferDetailsPageState extends State<OfferDetailsPage> {
       ),
     );
 
-    return BlocConsumer<PurchaseCubit, PurchaseState>(
+    return BlocConsumer<OfferCubit, OfferState>(
       bloc: purchaseCubit,
       listener: blocListener,
       builder: (context, state) => Scaffold(
@@ -59,7 +59,7 @@ class _OfferDetailsPageState extends State<OfferDetailsPage> {
     );
   }
 
-  void blocListener(BuildContext context, PurchaseState state) {
+  void blocListener(BuildContext context, OfferState state) {
     if (state.purchaseResponse != null) {
       final purchaseResponse = state.purchaseResponse!;
 

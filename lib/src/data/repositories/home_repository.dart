@@ -2,11 +2,11 @@ import 'package:graphql/client.dart';
 import 'package:marketplace/src/data/models/customer_model.dart';
 import 'package:marketplace/src/data/queries/marketplace_queries.dart';
 
-abstract class CustomerRepository {
+abstract class HomeRepository {
   Future<CustomerModel> getCustomer();
 }
 
-class GraphQLCustomerRepository implements CustomerRepository {
+class GraphQLCustomerRepository implements HomeRepository {
   final GraphQLClient _client;
 
   GraphQLCustomerRepository(this._client);

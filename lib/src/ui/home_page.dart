@@ -3,17 +3,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graphql/client.dart';
 import 'package:marketplace/src/data/models/customer_model.dart';
 import 'package:marketplace/src/data/models/offer_model.dart';
-import 'package:marketplace/src/data/repositories/customer_repository.dart';
-import 'package:marketplace/src/data/repositories/purchase_repository.dart';
-import 'package:marketplace/src/logic/customer_cubit.dart';
-import 'package:marketplace/src/ui/offer_details_page.dart';
+import 'package:marketplace/src/data/repositories/home_repository.dart';
+import 'package:marketplace/src/data/repositories/offer_repository.dart';
+import 'package:marketplace/src/logic/home_cubit.dart';
+import 'package:marketplace/src/ui/offer_page.dart';
 import 'package:marketplace/src/utils/utils.dart';
 import 'package:marketplace/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class HomePage extends StatefulWidget {
-  final CustomerRepository repository;
+  final HomeRepository repository;
 
   const HomePage({
     Key? key,
@@ -25,7 +25,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late CustomerCubit cubit = CustomerCubit(widget.repository);
+  late HomeCubit cubit = HomeCubit(widget.repository);
 
   @override
   void initState() {
@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: BlocBuilder<CustomerCubit, CustomerState>(
+            child: BlocBuilder<HomeCubit, HomeState>(
               bloc: cubit,
               builder: (context, state) {
                 if (state.isLoading) {
@@ -97,7 +97,7 @@ class _HomeBodyWidget extends StatelessWidget {
           Expanded(
             child: _OffersWidget(
               customer.offers,
-              onNavigateToProductDetails: (offer) => _onNavigateToDetailsPage(
+              onNavigateToOfferPage: (offer) => _onNavigateToOfferPage(
                 context,
                 offer: offer,
               ),
@@ -106,14 +106,14 @@ class _HomeBodyWidget extends StatelessWidget {
         ],
       );
 
-  Future<void> _onNavigateToDetailsPage(
+  Future<void> _onNavigateToOfferPage(
     BuildContext context, {
     required OfferModel offer,
   }) async {
     final updatedCustomer = await Navigator.push<CustomerModel>(
       context,
       MaterialPageRoute(
-        builder: (context) => OfferDetailsPage(
+        builder: (context) => OfferPage(
           offer: offer,
           balance: customer.balance,
           purchaseRepository: GraphQLPurchaseRepository(
@@ -164,12 +164,12 @@ class _BalanceWidget extends StatelessWidget {
 
 class _OffersWidget extends StatelessWidget {
   final List<OfferModel> offers;
-  final void Function(OfferModel)? onNavigateToProductDetails;
+  final void Function(OfferModel)? onNavigateToOfferPage;
 
   const _OffersWidget(
     this.offers, {
     Key? key,
-    this.onNavigateToProductDetails,
+    this.onNavigateToOfferPage,
   }) : super(key: key);
 
   @override
@@ -190,7 +190,7 @@ class _OffersWidget extends StatelessWidget {
               itemCount: offers.length,
               itemBuilder: (context, index) => _OfferTileWidget(
                 offers[index],
-                onTap: () => onNavigateToProductDetails?.call(offers[index]),
+                onTap: () => onNavigateToOfferPage?.call(offers[index]),
               ),
             ),
           )

@@ -1,29 +1,29 @@
-part of 'customer_cubit.dart';
+part of 'home_cubit.dart';
 
-class CustomerState extends Equatable {
+class HomeState extends Equatable {
   final CustomerModel? customer;
   final bool isLoading;
   final bool hasError;
 
-  const CustomerState._({
+  const HomeState._({
     this.customer,
     this.isLoading = false,
     this.hasError = false,
   });
 
-  factory CustomerState.initial() => CustomerState._();
+  factory HomeState.initial() => HomeState._();
 
-  factory CustomerState.loading() => CustomerState._(
+  factory HomeState.loading() => HomeState._(
         isLoading: true,
         hasError: false,
       );
 
-  factory CustomerState.error() => CustomerState._(
+  factory HomeState.error() => HomeState._(
         hasError: true,
         isLoading: false,
       );
 
-  factory CustomerState.fetched(CustomerModel customer) => CustomerState._(
+  factory HomeState.fetched(CustomerModel customer) => HomeState._(
         customer: customer,
         hasError: false,
         isLoading: false,

@@ -2,11 +2,11 @@ import 'package:graphql/client.dart';
 import 'package:marketplace/src/data/models/purchase_response_model.dart';
 import 'package:marketplace/src/data/queries/marketplace_queries.dart';
 
-abstract class PurchaseRepository {
+abstract class OfferRepository {
   Future<PurchaseResponseModel> purchase(String offerId);
 }
 
-class GraphQLPurchaseRepository implements PurchaseRepository {
+class GraphQLPurchaseRepository implements OfferRepository {
   final GraphQLClient _client;
 
   GraphQLPurchaseRepository(this._client);

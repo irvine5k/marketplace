@@ -1,22 +1,22 @@
-part of 'purchase_cubit.dart';
+part of 'offer_cubit.dart';
 
-class PurchaseState extends Equatable {
+class OfferState extends Equatable {
   final PurchaseResponseModel? purchaseResponse;
   final bool isLoading;
 
-  const PurchaseState._({
+  const OfferState._({
     this.purchaseResponse,
     this.isLoading = false,
   });
 
-  factory PurchaseState.initial() => PurchaseState._();
+  factory OfferState.initial() => OfferState._();
 
-  factory PurchaseState.loading() => PurchaseState._(
+  factory OfferState.loading() => OfferState._(
         isLoading: true,
       );
 
-  factory PurchaseState.response(PurchaseResponseModel purchaseResponse) =>
-      PurchaseState._(
+  factory OfferState.response(PurchaseResponseModel purchaseResponse) =>
+      OfferState._(
         purchaseResponse: purchaseResponse,
         isLoading: false,
       );
