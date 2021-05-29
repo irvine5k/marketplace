@@ -29,6 +29,8 @@ class Mutations {
         success
         errorMessage
         customer {
+          id
+          name
           balance
           offers {
             id
