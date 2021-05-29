@@ -83,11 +83,13 @@ class _HomeBodyWidget extends StatelessWidget {
           const SizedBox(height: 10),
           _BalanceWidget(customer.balance),
           const SizedBox(height: 20),
-          _OffersWidget(
-            customer.offers,
-            onNavigateToProductDetails: (offer) => _onNavigateToDetailsPage(
-              context,
-              offer: offer,
+          Expanded(
+            child: _OffersWidget(
+              customer.offers,
+              onNavigateToProductDetails: (offer) => _onNavigateToDetailsPage(
+                context,
+                offer: offer,
+              ),
             ),
           ),
         ],
@@ -156,6 +158,7 @@ class _OffersWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             'Offers',

@@ -12,17 +12,18 @@ class OfferModel extends Equatable {
   final int price;
   final ProductModel product;
 
-  factory OfferModel.fromJson(Map<String, dynamic> json) => OfferModel(
-        id: json["id"],
-        price: json["price"],
-        product: ProductModel.fromJson(json["product"]),
+  factory OfferModel.fromJson(Map<String, Object?> json) => OfferModel(
+        id: json['id'] as String,
+        price: json['price'] as int,
+        product: ProductModel.fromJson(json['product'] as Map<String, Object?>),
       );
 
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "price": price,
-        "product": product.toJson(),
-      };
+  static List<OfferModel> fromJsonList(List<Object?> list) =>
+      List<OfferModel>.from(
+        list.map<OfferModel>(
+          (x) => OfferModel.fromJson(x as Map<String, Object?>),
+        ),
+      );
 
   @override
   List<Object?> get props => [id, price, product];

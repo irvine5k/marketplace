@@ -20,7 +20,7 @@ class GraphQLCustomerRepository implements CustomerRepository {
     if (result.hasException) {
       throw Exception();
     } else {
-      final data = result.data!['viewer'];
+      final data = result.data!['viewer'] as Map<String, Object?>;
 
       final customer = CustomerModel.fromJson(data);
 

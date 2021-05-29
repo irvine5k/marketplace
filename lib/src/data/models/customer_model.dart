@@ -15,20 +15,14 @@ class CustomerModel extends Equatable {
   final int balance;
   final List<OfferModel> offers;
 
-  factory CustomerModel.fromJson(Map<String, dynamic> json) => CustomerModel(
-        id: json["id"],
-        name: json["name"],
-        balance: json["balance"],
-        offers: List<OfferModel>.from(
-            json["offers"].map((x) => OfferModel.fromJson(x))),
+  factory CustomerModel.fromJson(Map<String, Object?> json) => CustomerModel(
+        id: json['id'] as String,
+        name: json['name'] as String,
+        balance: json['balance'] as int,
+        offers: OfferModel.fromJsonList(
+          json['offers'] as List<Object?>,
+        ),
       );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-        "balance": balance,
-        "offers": List<dynamic>.from(offers.map((x) => x.toJson())),
-      };
 
   @override
   List<Object?> get props => [id, name, balance, offers];

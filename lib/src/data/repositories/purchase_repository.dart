@@ -20,7 +20,7 @@ class GraphQLPurchaseRepository implements PurchaseRepository {
     if (result.hasException) {
       throw Exception();
     } else {
-      final data = result.data!['purchase'];
+      final data = result.data!['purchase'] as Map<String, Object?>;
 
       final purchaseResponse = PurchaseResponseModel.fromJson(data);
 

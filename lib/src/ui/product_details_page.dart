@@ -35,10 +35,16 @@ class _OfferDetailsPageState extends State<OfferDetailsPage> {
             final purchaseResponse = state.purchaseResponse!;
 
             if (purchaseResponse.success) {
-              showDialog(
+              showDialog<void>(
                 context: context,
                 builder: (_) => AlertDialog(
-                  title: Text('Success'),
+                  title: Text(
+                    'Success',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText1!
+                        .copyWith(color: AppColors.black),
+                  ),
                   actions: [
                     ElevatedButton(
                       onPressed: () {
@@ -54,7 +60,7 @@ class _OfferDetailsPageState extends State<OfferDetailsPage> {
                 ),
               );
             } else {
-              showDialog(
+              showDialog<void>(
                 context: context,
                 builder: (_) => AlertDialog(
                   title: Text('Error'),
@@ -62,7 +68,7 @@ class _OfferDetailsPageState extends State<OfferDetailsPage> {
                   actions: [
                     ElevatedButton(
                       onPressed: () => Navigator.pop(context),
-                      child: Text('Back to Home'),
+                      child: Text('Ok'),
                     ),
                   ],
                 ),
@@ -70,7 +76,7 @@ class _OfferDetailsPageState extends State<OfferDetailsPage> {
             }
           }
         },
-        builder: (context, snapshot) {
+        builder: (context, state) {
           return Scaffold(
             body: SafeArea(
               child: SingleChildScrollView(
@@ -116,6 +122,8 @@ class _OfferDetailsPageState extends State<OfferDetailsPage> {
                       },
                       child: Icon(Icons.arrow_back_ios),
                     ),
+                    if (state.isLoading)
+                      Center(child: CircularProgressIndicator())
                   ],
                 ),
               ),
@@ -130,7 +138,9 @@ class _OfferDetailsPageState extends State<OfferDetailsPage> {
                     ),
               ),
               ElevatedButton(
-                onPressed: () => purchaseCubit.purchase(widget.offer.id),
+                onPressed: !state.isLoading
+                    ? () => purchaseCubit.purchase(widget.offer.id)
+                    : null,
                 child: Text('Buy'),
               )
             ],

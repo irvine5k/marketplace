@@ -11,16 +11,12 @@ class PurchaseResponseModel {
   final String errorMessage;
   final CustomerModel customer;
 
-  factory PurchaseResponseModel.fromJson(Map<String, dynamic> json) =>
+  factory PurchaseResponseModel.fromJson(Map<String, Object?> json) =>
       PurchaseResponseModel(
-        success: json["success"],
-        errorMessage: json["errorMessage"] ?? '',
-        customer: CustomerModel.fromJson(json["customer"]),
+        success: json['success'] as bool,
+        errorMessage:
+            json['errorMessage'] != null ? json['errorMessage'] as String : '',
+        customer:
+            CustomerModel.fromJson(json['customer'] as Map<String, Object?>),
       );
-
-  Map<String, dynamic> toJson() => {
-        "success": success,
-        "errorMessage": errorMessage,
-        "customer": customer.toJson(),
-      };
 }
