@@ -1,6 +1,7 @@
+import 'package:equatable/equatable.dart';
 import 'package:marketplace/src/common/models/customer_model.dart';
 
-class PurchaseResponseModel {
+class PurchaseResponseModel extends Equatable {
   const PurchaseResponseModel({
     required this.success,
     required this.errorMessage,
@@ -19,4 +20,7 @@ class PurchaseResponseModel {
         customer:
             CustomerModel.fromJson(json['customer'] as Map<String, Object?>),
       );
+
+  @override
+  List<Object?> get props => [success, errorMessage, customer];
 }

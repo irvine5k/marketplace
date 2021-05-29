@@ -22,7 +22,7 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
 
-  Future<void> setCustomer(CustomerModel? customer) async {
+  void setCustomer(CustomerModel? customer) async {
     if (customer != null) {
       emit(HomeState.fetched(customer));
     }
