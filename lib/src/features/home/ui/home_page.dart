@@ -116,7 +116,7 @@ class _HomeBodyWidget extends StatelessWidget {
         builder: (context) => OfferPage(
           offer: offer,
           balance: customer.balance,
-          purchaseRepository: GraphQLPurchaseRepository(
+          purchaseRepository: GraphQLOfferRepository(
             Provider.of<GraphQLClient>(context),
           ),
         ),

@@ -6,10 +6,10 @@ abstract class OfferRepository {
   Future<PurchaseResponseModel> purchase(String offerId);
 }
 
-class GraphQLPurchaseRepository implements OfferRepository {
+class GraphQLOfferRepository implements OfferRepository {
   final GraphQLClient _client;
 
-  GraphQLPurchaseRepository(this._client);
+  GraphQLOfferRepository(this._client);
 
   @override
   Future<PurchaseResponseModel> purchase(String offerId) async {

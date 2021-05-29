@@ -6,10 +6,10 @@ abstract class HomeRepository {
   Future<CustomerModel> getCustomer();
 }
 
-class GraphQLCustomerRepository implements HomeRepository {
+class GraphQLHomeRepository implements HomeRepository {
   final GraphQLClient _client;
 
-  GraphQLCustomerRepository(this._client);
+  GraphQLHomeRepository(this._client);
 
   @override
   Future<CustomerModel> getCustomer() async {

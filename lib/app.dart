@@ -27,7 +27,7 @@ class App extends StatelessWidget {
       tokenRepository: MockTokenRepository(),
     ).getClientValueNotifier(serverAddress);
 
-    final customerRepository = GraphQLCustomerRepository(
+    final customerRepository = GraphQLHomeRepository(
       graphQlClientNotifier.value,
     );
 
