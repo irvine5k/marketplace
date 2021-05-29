@@ -1,31 +1,34 @@
 part of 'customer_cubit.dart';
 
-abstract class CustomerState extends Equatable {}
-
-class InitialState extends CustomerState {
-  @override
-  List<Object?> get props => throw UnimplementedError();
-}
-
-class LoadingState extends CustomerState {
-  @override
-  List<Object?> get props => throw UnimplementedError();
-}
-
-class ErrorState extends CustomerState {
+class CustomerState extends Equatable {
   final CustomerModel? customer;
+  final bool isLoading;
+  final bool hasError;
 
-  ErrorState({this.customer});
+  const CustomerState._({
+    this.customer,
+    this.isLoading = false,
+    this.hasError = false,
+  });
+
+  factory CustomerState.initial() => CustomerState._();
+
+  factory CustomerState.loading() => CustomerState._(
+        isLoading: true,
+        hasError: false,
+      );
+
+  factory CustomerState.error() => CustomerState._(
+        hasError: true,
+        isLoading: false,
+      );
+
+  factory CustomerState.fetched(CustomerModel customer) => CustomerState._(
+        customer: customer,
+        hasError: false,
+        isLoading: false,
+      );
 
   @override
-  List<Object?> get props => throw UnimplementedError();
-}
-
-class LoadedState extends CustomerState {
-  final CustomerModel customer;
-
-  LoadedState({required this.customer});
-
-  @override
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [customer, isLoading, hasError];
 }

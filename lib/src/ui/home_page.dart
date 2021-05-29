@@ -25,11 +25,22 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CustomerCubit, CustomerState>(
-      bloc: cubit,
-      builder: (context, state) {
-        return Container();
-      },
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Home'),
+      ),
+      body: BlocBuilder<CustomerCubit, CustomerState>(
+        bloc: cubit,
+        builder: (context, state) {
+          if (state.isLoading) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+
+          return Text(state.customer!.balance.toString());
+        },
+      ),
     );
   }
 }

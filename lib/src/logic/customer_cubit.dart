@@ -6,19 +6,17 @@ import 'package:marketplace/src/data/repositories/customer_repository.dart';
 part 'customer_state.dart';
 
 class CustomerCubit extends Cubit<CustomerState> {
-  CustomerCubit(this._repository) : super(InitialState());
+  CustomerCubit(this._repository) : super(CustomerState.initial());
 
   final CustomerRepository _repository;
-
-  CustomerModel? _customerModel;
 
   Future<void> getCustomer() async {
     try {
       final customer = await _repository.getCustomer();
 
-      emit(LoadedState(customer: customer));
+      emit(CustomerState.fetched(customer));
     } catch (e) {
-      emit(ErrorState(customer: _customerModel));
+      emit(CustomerState.error());
     }
   }
 }
