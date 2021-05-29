@@ -31,4 +31,11 @@ class HomeState extends Equatable {
 
   @override
   List<Object?> get props => [customer, isLoading, hasError];
+
+  @override
+  String toString() => '''HomeState {
+    customer: $customer
+    isLoading: $isLoading
+    hasError: $hasError
+  }''';
 }

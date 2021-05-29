@@ -26,4 +26,12 @@ class CustomerModel extends Equatable {
 
   @override
   List<Object?> get props => [id, name, balance, offers];
+
+  @override
+  String toString() => '''{
+    id: $id
+    name: $name
+    balance: $balance
+    offers: $offers
+  }''';
 }

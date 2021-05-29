@@ -27,4 +27,11 @@ class OfferModel extends Equatable {
 
   @override
   List<Object?> get props => [id, price, product];
+
+  @override
+  String toString() => '''{
+    id: $id
+    price: $price
+    product: $product
+  }''';
 }

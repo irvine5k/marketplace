@@ -22,4 +22,12 @@ class ProductModel extends Equatable {
 
   @override
   List<Object?> get props => [id, name, description, image];
+
+  @override
+  String toString() => '''{
+    id: $id
+    name: $name
+    description: $description
+    image: $image
+  }''';
 }
