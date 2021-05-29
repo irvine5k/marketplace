@@ -6,9 +6,11 @@ import 'package:marketplace/src/data/models/offer_model.dart';
 import 'package:marketplace/src/data/repositories/customer_repository.dart';
 import 'package:marketplace/src/data/repositories/purchase_repository.dart';
 import 'package:marketplace/src/logic/customer_cubit.dart';
-import 'package:marketplace/src/ui/product_details_page.dart';
+import 'package:marketplace/src/ui/offer_details_page.dart';
 import 'package:marketplace/src/utils/utils.dart';
+import 'package:marketplace/theme.dart';
 import 'package:provider/provider.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class HomePage extends StatefulWidget {
   final CustomerRepository repository;
@@ -33,7 +35,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) => Material(
-        color: Theme.of(context).primaryColor,
+        color: AppColors.purple,
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -81,7 +83,16 @@ class _HomeBodyWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 10),
-          _BalanceWidget(customer.balance),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _BalanceWidget(customer.balance),
+              CircleAvatar(
+                backgroundColor: AppColors.grey,
+                child: Text('KG'),
+              ),
+            ],
+          ),
           const SizedBox(height: 20),
           Expanded(
             child: _OffersWidget(
@@ -126,20 +137,25 @@ class _BalanceWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10),
+        padding: const EdgeInsets.symmetric(vertical: DesignTokens.sizeM),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               Utils.formatToMonetaryValueFromInteger(balance),
-              style: Theme.of(context).textTheme.headline5,
+              style: TextStyle(
+                color: AppColors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: DesignTokens.fontXXL,
+              ),
             ),
             const SizedBox(height: 5),
             Text(
               'Total Balance',
-              style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                    color: Theme.of(context).accentColor,
-                  ),
+              style: TextStyle(
+                color: AppColors.white.withOpacity(0.8),
+                fontSize: DesignTokens.fontSM,
+              ),
             ),
           ],
         ),
@@ -162,29 +178,58 @@ class _OffersWidget extends StatelessWidget {
         children: [
           Text(
             'Offers',
-            style: Theme.of(context).textTheme.headline6,
+            style: TextStyle(
+              fontSize: DesignTokens.fontXL,
+              fontWeight: FontWeight.bold,
+              color: AppColors.white,
+            ),
           ),
           const SizedBox(height: 20),
           Expanded(
             child: ListView.builder(
               itemCount: offers.length,
-              itemBuilder: (context, index) => Card(
-                child: ListTile(
-                  leading: Image.network(offers[index].product.image),
-                  title: Text(
-                    offers[index].product.name,
-                  ),
-                  subtitle: Text(
-                    Utils.formatToMonetaryValueFromInteger(
-                      offers[index].price,
-                    ),
-                  ),
-                  trailing: Icon(Icons.arrow_right_alt),
-                  onTap: () => onNavigateToProductDetails?.call(offers[index]),
-                ),
+              itemBuilder: (context, index) => _OfferTileWidget(
+                offers[index],
+                onTap: () => onNavigateToProductDetails?.call(offers[index]),
               ),
             ),
           )
         ],
+      );
+}
+
+class _OfferTileWidget extends StatelessWidget {
+  final OfferModel offer;
+  final VoidCallback onTap;
+
+  const _OfferTileWidget(
+    this.offer, {
+    Key? key,
+    required this.onTap,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) => Card(
+        child: ListTile(
+          leading: CachedNetworkImage(
+            imageUrl: offer.product.image,
+            progressIndicatorBuilder: (context, url, downloadProgress) =>
+                CircularProgressIndicator(value: downloadProgress.progress),
+            errorWidget: (context, url, dynamic _) => Icon(Icons.error),
+          ),
+          title: Text(
+            offer.product.name,
+          ),
+          subtitle: Text(
+            Utils.formatToMonetaryValueFromInteger(
+              offer.price,
+            ),
+          ),
+          trailing: Icon(
+            Icons.arrow_right_alt,
+            color: AppColors.purple,
+          ),
+          onTap: onTap,
+        ),
       );
 }

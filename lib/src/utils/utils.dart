@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:marketplace/theme.dart';
 
 class Utils {
   static String formatToMonetaryValueFromInteger(
@@ -29,7 +31,7 @@ class Utils {
     if (withSymbol && value > 0.0) symbol = isNegative ? '- ' : '+ ';
 
     final currSymbol =
-        withCurrencySymbol ? (withSpaceOnCurrencySymbol ? '\$ ' : '\$') : '';
+        withCurrencySymbol ? (withSpaceOnCurrencySymbol ? 'R\$ ' : 'R\$') : '';
     final prefixValue = symbol + currSymbol;
 
     return NumberFormat.currency(
@@ -39,4 +41,31 @@ class Utils {
           : '$prefixValue###0.0#',
     ).format(value);
   }
+
+  static void showCustomDialog(
+    BuildContext context, {
+    required String title,
+    required VoidCallback onPressed,
+    String buttonLabel = 'OK',
+    String? description,
+  }) =>
+      showDialog<void>(
+        context: context,
+        builder: (_) => AlertDialog(
+          title: Text(
+            'Success',
+            style: Theme.of(context)
+                .textTheme
+                .bodyText1!
+                .copyWith(color: AppColors.black),
+          ),
+          content: description != null ? Text(description) : null,
+          actions: [
+            ElevatedButton(
+              onPressed: onPressed,
+              child: Text(buttonLabel),
+            ),
+          ],
+        ),
+      );
 }

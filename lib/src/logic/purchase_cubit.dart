@@ -11,6 +11,8 @@ class PurchaseCubit extends Cubit<PurchaseState> {
   final PurchaseRepository _repository;
 
   Future<void> purchase(String offerId) async {
+    emit(PurchaseState.loading());
+
     final purchaseResponse = await _repository.purchase(offerId);
 
     emit(PurchaseState.response(purchaseResponse));

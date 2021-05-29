@@ -27,7 +27,6 @@ class App extends StatelessWidget {
       value: graphQlClientNotifier,
       child: MaterialApp(
         title: 'Flutter Demo',
-        theme: AppTheme.theme,
         home: HomePage(repository: customerRepository),
       ),
     );

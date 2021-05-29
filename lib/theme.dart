@@ -1,80 +1,30 @@
 import 'package:flutter/material.dart';
 
-class AppTheme {
-  static ThemeData get theme => ThemeData(
-        scaffoldBackgroundColor: AppColors.white,
-        primaryColor: AppColors.purple,
-        accentColor: AppColors.white.withOpacity(0.8),
-        textTheme: TextTheme(
-          button: TextStyle(color: AppColors.black),
-          headline5: TextStyle(
-            color: AppColors.white,
-            fontWeight: FontWeight.w600,
-          ),
-          headline6: TextStyle(
-            color: AppColors.white,
-            fontWeight: FontWeight.w600,
-          ),
-          bodyText2: TextStyle(
-            color: AppColors.black,
-            fontWeight: FontWeight.w600,
-          ),
-          bodyText1: TextStyle(
-            color: AppColors.black.withOpacity(0.6),
-            fontWeight: FontWeight.w400,
-          ),
-        ),
-        elevatedButtonTheme:
-            ElevatedButtonThemeData(style: elevatedButtonTheme()),
-        iconTheme: const IconThemeData(color: AppColors.black),
-        appBarTheme: const AppBarTheme(
-          brightness: Brightness.light,
-          iconTheme: IconThemeData(color: AppColors.black),
-          textTheme: TextTheme(
-            headline6: TextStyle(
-              color: AppColors.black,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        ),
-      );
-
-  static ButtonStyle elevatedButtonTheme() {
-    return ButtonStyle(
-      animationDuration: const Duration(milliseconds: 0),
-      elevation: MaterialStateProperty.all<double>(0.0),
-      backgroundColor: MaterialStateProperty.resolveWith<Color>((states) {
-        if (states.contains(MaterialState.disabled)) {
-          return AppColors.grey;
-        }
-
-        return AppColors.purple;
-      }),
-      textStyle: MaterialStateProperty.all<TextStyle>(
-        const TextStyle(
-          color: Colors.white,
-        ),
-      ),
-      shape: MaterialStateProperty.all<OutlinedBorder>(
-        const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(5),
-          ),
-        ),
-      ),
-      padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-        const EdgeInsets.symmetric(
-          vertical: 12,
-          horizontal: 32,
-        ),
-      ),
-    );
-  }
-}
-
 class AppColors {
   static const purple = Color(0xff6c1aaa);
   static const grey = Color(0xffe3e4e8);
   static const white = Color(0xffffffff);
   static const black = Color(0xff000000);
+}
+
+class DesignTokens {
+  static const sizeXXS = 2.0;
+  static const sizeXS = 4.0;
+  static const sizeS = 8.0;
+  static const sizeSM = 12.0;
+  static const sizeM = 14.0;
+  static const sizeL = 16.0;
+  static const sizeXL = 24.0;
+  static const sizeXXL = 32.0;
+  static const sizeXXXL = 48.0;
+  static const sizeXXXXL = 72.0;
+
+  static const fontXXS = 10.0;
+  static const fontXS = 12.0;
+  static const fontSM = 14.0;
+  static const fontMD = 16.0;
+  static const fontLG = 18.0;
+  static const fontXL = 20.0;
+  static const fontXXL = 24.0;
+  static const fontXXXL = 36.0;
 }
