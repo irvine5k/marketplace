@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marketplace/src/common/models/customer_model.dart';
@@ -130,16 +131,21 @@ class _ProductDetailsBodyWidget extends StatelessWidget {
   Widget build(BuildContext context) => SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height / 2,
-              alignment: Alignment.bottomLeft,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(product.image),
+            CachedNetworkImage(
+              imageUrl: product.image,
+              imageBuilder: (context, imageProvider) => Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height / 2,
+                alignment: Alignment.bottomLeft,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: imageProvider,
+                  ),
                 ),
               ),
+              placeholder: (context, url) => CircularProgressIndicator(),
+              errorWidget: (context, url, dynamic _) => Icon(Icons.error),
             ),
             const SizedBox(height: 20),
             Padding(
