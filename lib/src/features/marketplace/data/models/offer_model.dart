@@ -1,4 +1,4 @@
-import 'package:marketplace/src/marketplace/data/models/product_model.dart';
+import 'package:marketplace/src/features/marketplace/data/models/product_model.dart';
 
 class OfferModel {
   const OfferModel({
