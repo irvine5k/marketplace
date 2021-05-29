@@ -6,10 +6,6 @@ import 'package:mocktail/mocktail.dart';
 
 import '../../../mocks.dart';
 
-class MockGraphQLClient extends Mock implements GraphQLClient {}
-
-class MockQueryOptions extends Mock implements QueryOptions {}
-
 void main() {
   late GraphQLClient client;
   late GraphQLHomeRepository repository;
