@@ -3,9 +3,9 @@ import 'package:graphql/client.dart';
 import 'package:marketplace/src/common/repositories/token_repository.dart';
 
 class GraphQlClientFactory {
-  final TokenRepository authenticationService;
+  final TokenRepository tokenRepository;
 
-  const GraphQlClientFactory({required this.authenticationService});
+  const GraphQlClientFactory({required this.tokenRepository});
 
   ValueNotifier<GraphQLClient> getClientValueNotifier(
     String serverAddress,
@@ -17,7 +17,7 @@ class GraphQlClientFactory {
   GraphQLClient _createBluGraphQlClient(String serverAddress) {
     final httpLink = HttpLink('$serverAddress/query');
 
-    final authLink = AuthLink(getToken: authenticationService.getToken);
+    final authLink = AuthLink(getToken: tokenRepository.getToken);
 
     final link = Link.from([authLink, httpLink]);
 
