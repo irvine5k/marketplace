@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:graphql/client.dart';
 import 'package:marketplace/src/common/models/customer_model.dart';
 import 'package:marketplace/src/common/utils/utils.dart';
+import 'package:marketplace/src/common/widgets/error_widget.dart';
 import 'package:marketplace/src/features/home/data/home_repository.dart';
 import 'package:marketplace/src/features/home/ui/home_page.dart';
 import 'package:marketplace/src/features/offer/ui/offer_page.dart';
@@ -40,6 +41,20 @@ void main() {
       for (final offer in _customer.offers) {
         expect(find.text(offer.product.name), findsOneWidget);
       }
+    },
+  );
+
+  testWidgets(
+    'When happen an error '
+    'should find the error widget',
+    (tester) async {
+      when(() => _repository.getCustomer()).thenThrow(Exception());
+
+      await _createWidget(tester);
+
+      await tester.pump();
+
+      expect(find.byType(CustomErrorWidget), findsOneWidget);
     },
   );
 

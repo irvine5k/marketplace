@@ -5,6 +5,7 @@ import 'package:graphql/client.dart';
 import 'package:marketplace/src/common/models/customer_model.dart';
 import 'package:marketplace/src/common/models/offer_model.dart';
 import 'package:marketplace/src/common/utils/utils.dart';
+import 'package:marketplace/src/common/widgets/error_widget.dart';
 import 'package:marketplace/src/common/widgets/rounded_button_widget.dart';
 import 'package:marketplace/src/common/widgets/rounded_card_widget.dart';
 import 'package:marketplace/src/common/widgets/rounded_tile_widget.dart';
@@ -53,6 +54,8 @@ class _HomePageState extends State<HomePage> {
                   customer: customer,
                   onUpdateCustomer: cubit.setCustomer,
                 );
+              } else if (state.hasError) {
+                return CustomErrorWidget(onRetry: cubit.getCustomer);
               }
 
               return Container();
