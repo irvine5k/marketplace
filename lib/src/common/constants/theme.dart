@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const purple = Color(0xff6c1aaa);
-  static const grey = Color(0xffe3e4e8);
-  static const white = Color(0xffffffff);
   static const black = Color(0xff000000);
+  static const white = Color(0xffffffff);
+  static const lightGreen = Color(0xfff5fe88);
+  static const lightBlue = Color(0xffb5dcda);
+  static const grey = Color(0xffe3e4e8);
+  static const darkGrey = Color(0xff222222);
 }
 
 class DesignTokens {

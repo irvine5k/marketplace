@@ -148,34 +148,42 @@ class _ProductDetailsBodyWidget extends StatelessWidget {
                 errorWidget: (context, url, dynamic _) => Icon(Icons.error),
               ),
               const SizedBox(height: 30),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                    child: Text(
-                      product.name,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                    child: Text(
-                      product.description,
-                      style: TextStyle(
-                        color: Colors.white.withOpacity(0.8),
-                      ),
-                    ),
-                  ),
-                ],
-              )
+              _ProductInfoWidget(product: product),
             ],
           ),
         ),
+      );
+}
+
+class _ProductInfoWidget extends StatelessWidget {
+  final ProductModel product;
+
+  const _ProductInfoWidget({Key? key, required this.product}) : super(key: key);
+  @override
+  Widget build(BuildContext context) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: Text(
+              product.name,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+          const SizedBox(height: 20),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: Text(
+              product.description,
+              style: TextStyle(
+                color: Colors.white.withOpacity(0.8),
+              ),
+            ),
+          ),
+        ],
       );
 }

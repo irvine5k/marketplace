@@ -11,7 +11,7 @@ class RoundedButtonWidget extends StatelessWidget {
     Key? key,
     required this.onTap,
     required this.label,
-  })  : backgroundColor = const Color(0xffb5dcda),
+  })  : backgroundColor = AppColors.lightBlue,
         labelColor = AppColors.black,
         super(key: key);
 
@@ -20,7 +20,7 @@ class RoundedButtonWidget extends StatelessWidget {
     required this.onTap,
     required this.label,
   })  : backgroundColor = AppColors.black,
-        labelColor = const Color(0xffb5dcda),
+        labelColor = AppColors.lightBlue,
         super(key: key);
 
   @override
