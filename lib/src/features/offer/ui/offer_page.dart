@@ -42,20 +42,22 @@ class _OfferPageState extends State<OfferPage> {
       bloc: purchaseCubit,
       listener: blocListener,
       builder: (context, state) => Scaffold(
+        backgroundColor: AppColors.black,
         appBar: _appBar,
         body: SafeArea(
           child: _ProductDetailsBodyWidget(widget.offer.product),
         ),
-        persistentFooterButtons: [
-          RoundedButtonWidget(
-            label: 'Buy Now ${Utils.formatToMonetaryValueFromInteger(
-              widget.offer.price,
-            )}',
-            onTap: state.isLoading
-                ? null
-                : () => purchaseCubit.purchase(widget.offer.id),
-          )
-        ],
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: FloatingActionButton.extended(
+          backgroundColor: Color(0xffb5dcda),
+          onPressed: () {},
+          label: Text(
+            'Buy Now ${Utils.formatToMonetaryValueFromInteger(widget.offer.price)}',
+            style: TextStyle(
+              color: AppColors.black,
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -108,14 +110,14 @@ class _AppBar extends StatelessWidget {
         preferredSize: Size.fromHeight(50),
         child: AppBar(
           elevation: 1,
-          backgroundColor: AppColors.white,
+          backgroundColor: AppColors.black,
           iconTheme: IconThemeData(
-            color: AppColors.purple,
+            color: AppColors.white,
           ),
           title: Text(
-            title,
+            'Offer Details',
             style: TextStyle(
-              color: AppColors.purple,
+              color: AppColors.white,
             ),
           ),
         ),
@@ -128,31 +130,49 @@ class _ProductDetailsBodyWidget extends StatelessWidget {
   const _ProductDetailsBodyWidget(this.product, {Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => SingleChildScrollView(
-        child: Column(
-          children: [
-            CachedNetworkImage(
-              imageUrl: product.image,
-              imageBuilder: (context, imageProvider) => Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height / 2,
-                alignment: Alignment.bottomLeft,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: imageProvider,
-                  ),
+  Widget build(BuildContext context) => Container(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(height: 20),
+              CachedNetworkImage(
+                imageUrl: product.image,
+                imageBuilder: (context, imageProvider) => CircleAvatar(
+                  backgroundImage: imageProvider,
+                  radius: 90,
                 ),
+                placeholder: (context, url) => CircularProgressIndicator(),
+                errorWidget: (context, url, dynamic _) => Icon(Icons.error),
               ),
-              placeholder: (context, url) => CircularProgressIndicator(),
-              errorWidget: (context, url, dynamic _) => Icon(Icons.error),
-            ),
-            const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: Text(product.description),
-            ),
-          ],
+              const SizedBox(height: 30),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Text(
+                      product.name,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Text(
+                      product.description,
+                      style: TextStyle(
+                        color: Colors.white.withOpacity(0.8),
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       );
 }

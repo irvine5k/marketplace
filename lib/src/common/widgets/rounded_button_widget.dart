@@ -13,15 +13,10 @@ class RoundedButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ElevatedButton(
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.resolveWith<Color>(
-            (states) {
-              if (states.contains(MaterialState.disabled)) {
-                return AppColors.grey;
-              }
-
-              return AppColors.purple;
-            },
+        style: ElevatedButton.styleFrom(
+          primary: Color(0xffb5dcda),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
           ),
         ),
         onPressed: onTap,
@@ -30,8 +25,7 @@ class RoundedButtonWidget extends StatelessWidget {
           child: Text(
             label,
             style: TextStyle(
-              color: AppColors.white,
-              fontSize: 18,
+              color: AppColors.black,
               fontWeight: FontWeight.w500,
             ),
           ),
