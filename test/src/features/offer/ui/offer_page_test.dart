@@ -7,6 +7,7 @@ import 'package:marketplace/src/features/offer/data/offer_repository.dart';
 import 'package:marketplace/src/features/offer/data/purchase_response_model.dart';
 import 'package:marketplace/src/features/offer/ui/offer_page.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:mocktail_image_network/mocktail_image_network.dart';
 
 class MockOfferRepository extends Mock implements OfferRepository {}
 
@@ -251,13 +252,15 @@ void main() {
 }
 
 Future<void> _createWidget(WidgetTester tester) async {
-  await tester.pumpWidget(
-    MaterialApp(
-      home: OfferPage(
-        purchaseRepository: _repository,
-        balance: _customer.balance,
-        offer: _customer.offers.first,
+  await mockNetworkImages(() async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: OfferPage(
+          purchaseRepository: _repository,
+          balance: _customer.balance,
+          offer: _customer.offers.first,
+        ),
       ),
-    ),
-  );
+    );
+  });
 }

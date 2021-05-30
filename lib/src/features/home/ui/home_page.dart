@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graphql/client.dart';
@@ -135,11 +136,14 @@ class _UserHeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Row(
         children: [
-          CircleAvatar(
-            backgroundColor: AppColors.lightBlue,
-            backgroundImage: NetworkImage(
-              'https://i1.sndcdn.com/artworks-000342907488-4512j6-t500x500.jpg',
+          CachedNetworkImage(
+            imageUrl:
+                'https://i1.sndcdn.com/artworks-000342907488-4512j6-t500x500.jpg',
+            imageBuilder: (context, imageProvider) => CircleAvatar(
+              backgroundImage: imageProvider,
             ),
+            placeholder: (context, url) => CircularProgressIndicator(),
+            errorWidget: (context, url, dynamic _) => Icon(Icons.error),
           ),
           const SizedBox(
             width: 10,
@@ -253,5 +257,6 @@ class _OfferTileWidget extends StatelessWidget {
           label: 'More',
           onTap: onTap,
         ),
+        onTap: onTap,
       );
 }

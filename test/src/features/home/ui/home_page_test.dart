@@ -7,6 +7,7 @@ import 'package:marketplace/src/features/home/data/home_repository.dart';
 import 'package:marketplace/src/features/home/ui/home_page.dart';
 import 'package:marketplace/src/features/offer/ui/offer_page.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:mocktail_image_network/mocktail_image_network.dart';
 import 'package:provider/provider.dart';
 
 import '../../../mocks.dart';
@@ -66,12 +67,14 @@ void main() {
 Future<void> _createWidget(WidgetTester tester) async {
   final graphQlClientNotifier = MockGraphQLClient();
 
-  await tester.pumpWidget(
-    ValueListenableProvider<GraphQLClient>.value(
-      value: ValueNotifier<GraphQLClient>(graphQlClientNotifier),
-      child: MaterialApp(
-        home: HomePage(repository: _repository),
+  await mockNetworkImages(() async {
+    await tester.pumpWidget(
+      ValueListenableProvider<GraphQLClient>.value(
+        value: ValueNotifier<GraphQLClient>(graphQlClientNotifier),
+        child: MaterialApp(
+          home: HomePage(repository: _repository),
+        ),
       ),
-    ),
-  );
+    );
+  });
 }
