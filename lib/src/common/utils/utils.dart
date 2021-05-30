@@ -4,30 +4,11 @@ import 'package:marketplace/src/common/constants/theme.dart';
 import 'package:marketplace/src/common/widgets/rounded_button_widget.dart';
 
 class Utils {
-  static String formatToMonetaryValueFromInteger(
-    int value, {
-    bool withSymbol = false,
-    bool isNegative = false,
-    bool withCurrencySymbol = true,
-    bool withThousandSeparator = true,
-  }) {
-    return formatToMonetaryValue(
-      value == 0 ? 0 : value / 100,
-      withCurrencySymbol: withCurrencySymbol,
-    );
-  }
-
-  static String formatToMonetaryValue(
-    double value, {
-    bool withCurrencySymbol = true,
-  }) {
-    final currencySymbol = withCurrencySymbol ? 'R\$ ' : '';
-
-    return NumberFormat.currency(
-      locale: 'pt_BR',
-      customPattern: '$currencySymbol###0.0#',
-    ).format(value);
-  }
+  static String formatToMonetaryValueFromInteger(int value) =>
+      NumberFormat.currency(
+        locale: 'en-US',
+        symbol: '\$',
+      ).format(value == 0 ? 0 : value / 100);
 
   static void showCustomDialog(
     BuildContext context, {
