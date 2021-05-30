@@ -5,7 +5,6 @@ import 'package:marketplace/src/common/models/customer_model.dart';
 import 'package:marketplace/src/common/models/offer_model.dart';
 import 'package:marketplace/src/common/models/product_model.dart';
 import 'package:marketplace/src/common/utils/utils.dart';
-import 'package:marketplace/src/common/widgets/rounded_button_widget.dart';
 import 'package:marketplace/src/features/offer/data/offer_repository.dart';
 import 'package:marketplace/src/features/offer/logic/offer_cubit.dart';
 import 'package:marketplace/src/common/constants/theme.dart';
@@ -50,13 +49,17 @@ class _OfferPageState extends State<OfferPage> {
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: FloatingActionButton.extended(
           backgroundColor: Color(0xffb5dcda),
-          onPressed: () {},
-          label: Text(
-            'Buy Now ${Utils.formatToMonetaryValueFromInteger(widget.offer.price)}',
-            style: TextStyle(
-              color: AppColors.black,
-            ),
-          ),
+          onPressed: () => purchaseCubit.purchase(widget.offer.id),
+          label: state.isLoading
+              ? CircularProgressIndicator(
+                  color: AppColors.black,
+                )
+              : Text(
+                  'Buy Now ${Utils.formatToMonetaryValueFromInteger(widget.offer.price)}',
+                  style: TextStyle(
+                    color: AppColors.black,
+                  ),
+                ),
         ),
       ),
     );

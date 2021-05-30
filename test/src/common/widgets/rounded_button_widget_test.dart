@@ -42,7 +42,7 @@ Future<void> _createWidget(
   await tester.pumpWidget(
     MaterialApp(
       home: Scaffold(
-        body: RoundedButtonWidget(
+        body: RoundedButtonWidget.light(
           onTap: onTap,
           label: _label,
         ),

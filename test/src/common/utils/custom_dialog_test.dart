@@ -48,7 +48,7 @@ class _Widget extends StatelessWidget {
   const _Widget({Key? key, this.onPressed}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return RoundedButtonWidget(
+    return RoundedButtonWidget.light(
       onTap: () => Utils.showCustomDialog(
         context,
         title: _alertDialogTitle,

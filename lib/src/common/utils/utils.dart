@@ -39,13 +39,14 @@ class Utils {
       showDialog<void>(
         context: context,
         builder: (_) => AlertDialog(
+          backgroundColor: Color(0xfff5fe88),
           title: Text(
-            'Success',
+            title,
             style: TextStyle(fontSize: DesignTokens.fontLG),
           ),
           content: description != null ? Text(description) : null,
           actions: [
-            RoundedButtonWidget(
+            RoundedButtonWidget.dark(
               onTap: onPressed,
               label: buttonLabel,
             ),

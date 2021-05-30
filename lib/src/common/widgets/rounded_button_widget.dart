@@ -4,17 +4,29 @@ import 'package:marketplace/src/common/constants/theme.dart';
 class RoundedButtonWidget extends StatelessWidget {
   final VoidCallback? onTap;
   final String label;
+  final Color backgroundColor;
+  final Color labelColor;
 
-  const RoundedButtonWidget({
+  const RoundedButtonWidget.light({
     Key? key,
     required this.onTap,
     required this.label,
-  }) : super(key: key);
+  })  : backgroundColor = const Color(0xffb5dcda),
+        labelColor = AppColors.black,
+        super(key: key);
+
+  const RoundedButtonWidget.dark({
+    Key? key,
+    required this.onTap,
+    required this.label,
+  })  : backgroundColor = AppColors.black,
+        labelColor = const Color(0xffb5dcda),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) => ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: Color(0xffb5dcda),
+          primary: backgroundColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),
@@ -25,7 +37,7 @@ class RoundedButtonWidget extends StatelessWidget {
           child: Text(
             label,
             style: TextStyle(
-              color: AppColors.black,
+              color: labelColor,
               fontWeight: FontWeight.w500,
             ),
           ),

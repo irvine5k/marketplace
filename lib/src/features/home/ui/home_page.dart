@@ -11,7 +11,6 @@ import 'package:marketplace/src/features/home/logic/home_cubit.dart';
 import 'package:marketplace/src/features/offer/ui/offer_page.dart';
 import 'package:marketplace/src/common/constants/theme.dart';
 import 'package:provider/provider.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 class HomePage extends StatefulWidget {
   final HomeRepository repository;
@@ -282,7 +281,7 @@ class _OfferTileWidget extends StatelessWidget {
               color: AppColors.grey.withOpacity(0.6),
             ),
           ),
-          trailing: RoundedButtonWidget(
+          trailing: RoundedButtonWidget.light(
             label: 'More',
             onTap: onTap,
           ),
