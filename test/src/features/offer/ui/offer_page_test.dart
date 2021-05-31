@@ -116,8 +116,7 @@ void main() {
     'When Server Error '
     'should find the error dialog',
     (tester) async {
-      when(() => _repository.purchase(any()))
-          .thenAnswer((_) async => _purchaseFailResponse);
+      when(() => _repository.purchase(any())).thenThrow(Exception());
 
       await _createWidget(tester);
 
@@ -135,7 +134,7 @@ void main() {
       await tester.pump();
       await tester.pump();
 
-      expect(find.text(_purchaseFailResponse.errorMessage), findsOneWidget);
+      expect(find.text(AppMessages.serverError), findsOneWidget);
     },
   );
 }
