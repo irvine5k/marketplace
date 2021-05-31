@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:marketplace/src/common/resources/messages.dart';
 import 'package:marketplace/src/common/widgets/error_widget.dart';
 import 'package:marketplace/src/common/widgets/rounded_button_widget.dart';
 
@@ -19,7 +20,7 @@ void main() {
 
       await tester.tap(find.byType(RoundedButtonWidget));
 
-      expect(find.text('Something Wrong Happened'), findsOneWidget);
+      expect(find.text(AppMessages.somethingWrong), findsOneWidget);
 
       expect(clicked, true);
     },

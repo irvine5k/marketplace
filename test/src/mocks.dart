@@ -1,5 +1,6 @@
 import 'package:graphql/client.dart';
 import 'package:marketplace/src/features/home/data/home_repository.dart';
+import 'package:marketplace/src/features/offer/data/offer_repository.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockHomeRepository extends Mock implements HomeRepository {}
@@ -9,6 +10,8 @@ class MockGraphQLClient extends Mock implements GraphQLClient {}
 class MockMutationOptions extends Mock implements MutationOptions {}
 
 class MockQueryOptions extends Mock implements QueryOptions {}
+
+class MockOfferRepository extends Mock implements OfferRepository {}
 
 class Mocks {
   static Map<String, Object?> createCustomerJsonWithCustomBalance({

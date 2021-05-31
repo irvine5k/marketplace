@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:marketplace/src/common/constants/theme.dart';
+import 'package:marketplace/src/common/resources/messages.dart';
 import 'package:marketplace/src/common/widgets/rounded_button_widget.dart';
 
 class Utils {
@@ -14,13 +15,13 @@ class Utils {
     BuildContext context, {
     required String title,
     required VoidCallback onPressed,
-    String buttonLabel = 'OK',
+    String buttonLabel = AppMessages.okButton,
     String? description,
   }) =>
       showDialog<void>(
         context: context,
         builder: (_) => AlertDialog(
-          backgroundColor: Color(0xfff5fe88),
+          backgroundColor: AppColors.lightGreen,
           title: Text(
             title,
             style: TextStyle(fontSize: DesignTokens.fontLG),

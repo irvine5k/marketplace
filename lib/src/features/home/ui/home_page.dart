@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graphql/client.dart';
 import 'package:marketplace/src/common/models/customer_model.dart';
 import 'package:marketplace/src/common/models/offer_model.dart';
+import 'package:marketplace/src/common/resources/messages.dart';
 import 'package:marketplace/src/common/utils/utils.dart';
 import 'package:marketplace/src/common/widgets/error_widget.dart';
 import 'package:marketplace/src/common/widgets/rounded_button_widget.dart';
@@ -152,7 +153,7 @@ class _UserHeaderWidget extends StatelessWidget {
             width: 10,
           ),
           Text(
-            'Hi, $name',
+            AppMessages.greeting(name),
             style: TextStyle(
               color: AppColors.white,
               fontWeight: FontWeight.bold,
@@ -183,7 +184,7 @@ class _BalanceWidget extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Text(
-              'Total Balance',
+              AppMessages.totalBalance,
               style: TextStyle(
                 color: AppColors.black.withOpacity(0.5),
                 fontSize: DesignTokens.fontSM,
@@ -217,7 +218,7 @@ class _OffersWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Offers',
+            AppMessages.offersLabel,
             style: TextStyle(
               fontSize: DesignTokens.fontLG,
               color: AppColors.white,
@@ -257,7 +258,7 @@ class _OfferTileWidget extends StatelessWidget {
           offer.price,
         ),
         trailing: RoundedButtonWidget.light(
-          label: 'More',
+          label: AppMessages.moreButton,
           onTap: onTap,
         ),
         onTap: onTap,

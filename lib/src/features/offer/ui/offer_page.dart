@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marketplace/src/common/models/customer_model.dart';
 import 'package:marketplace/src/common/models/offer_model.dart';
 import 'package:marketplace/src/common/models/product_model.dart';
+import 'package:marketplace/src/common/resources/messages.dart';
 import 'package:marketplace/src/common/utils/utils.dart';
 import 'package:marketplace/src/features/offer/data/offer_repository.dart';
 import 'package:marketplace/src/features/offer/logic/offer_cubit.dart';
@@ -48,14 +49,16 @@ class _OfferPageState extends State<OfferPage> {
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: FloatingActionButton.extended(
-          backgroundColor: Color(0xffb5dcda),
+          backgroundColor: AppColors.lightBlue,
           onPressed: () => purchaseCubit.purchase(widget.offer.id),
           label: state.isLoading
               ? CircularProgressIndicator(
                   color: AppColors.black,
                 )
               : Text(
-                  'Buy Now ${Utils.formatToMonetaryValueFromInteger(widget.offer.price)}',
+                  AppMessages.buyNow(
+                    Utils.formatToMonetaryValueFromInteger(widget.offer.price),
+                  ),
                   style: TextStyle(
                     color: AppColors.black,
                   ),
@@ -69,10 +72,17 @@ class _OfferPageState extends State<OfferPage> {
     if (state.purchaseResponse != null) {
       final purchaseResponse = state.purchaseResponse!;
 
-      if (purchaseResponse.success) {
+      if (state.hasError) {
         Utils.showCustomDialog(
           context,
-          title: 'Success',
+          title: AppMessages.error,
+          description: AppMessages.serverError,
+          onPressed: () => Navigator.pop(context),
+        );
+      } else if (purchaseResponse.success) {
+        Utils.showCustomDialog(
+          context,
+          title: AppMessages.success,
           onPressed: () {
             Navigator.pop(context);
             Navigator.pop<CustomerModel>(
@@ -80,12 +90,12 @@ class _OfferPageState extends State<OfferPage> {
               purchaseResponse.customer,
             );
           },
-          buttonLabel: 'Back to Home',
+          buttonLabel: AppMessages.backToHome,
         );
       } else {
         Utils.showCustomDialog(
           context,
-          title: 'Error',
+          title: AppMessages.error,
           description: purchaseResponse.errorMessage,
           onPressed: () => Navigator.pop(context),
         );
@@ -118,7 +128,7 @@ class _AppBar extends StatelessWidget {
             color: AppColors.white,
           ),
           title: Text(
-            'Offer Details',
+            AppMessages.offerPageAppBarTitle,
             style: TextStyle(
               color: AppColors.white,
             ),

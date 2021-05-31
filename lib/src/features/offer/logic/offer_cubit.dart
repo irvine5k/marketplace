@@ -11,10 +11,14 @@ class OfferCubit extends Cubit<OfferState> {
   final OfferRepository _repository;
 
   Future<void> purchase(String offerId) async {
-    emit(OfferState.loading());
+    try {
+      emit(OfferState.loading());
 
-    final purchaseResponse = await _repository.purchase(offerId);
+      final purchaseResponse = await _repository.purchase(offerId);
 
-    emit(OfferState.response(purchaseResponse));
+      emit(OfferState.response(purchaseResponse));
+    } catch (_) {
+      emit(OfferState.error());
+    }
   }
 }
