@@ -170,30 +170,27 @@ class _ProductInfoWidget extends StatelessWidget {
 
   const _ProductInfoWidget({Key? key, required this.product}) : super(key: key);
   @override
-  Widget build(BuildContext context) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0),
-            child: Text(
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
               product.name,
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 18,
+                fontSize: DesignTokens.fontLG,
                 fontWeight: FontWeight.w600,
               ),
             ),
-          ),
-          const SizedBox(height: 20),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0),
-            child: Text(
+            const SizedBox(height: 20),
+            Text(
               product.description,
               style: TextStyle(
                 color: Colors.white.withOpacity(0.8),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       );
 }
