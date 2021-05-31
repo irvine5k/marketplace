@@ -29,11 +29,12 @@ class OfferState extends Equatable {
       );
 
   @override
-  List<Object?> get props => [purchaseResponse, isLoading];
+  List<Object?> get props => [purchaseResponse, isLoading, hasError];
 
   @override
   String toString() => '''OfferState {
     purchaseResponse: $purchaseResponse
     isLoading: $isLoading
+    hasError: $hasError
   }''';
 }

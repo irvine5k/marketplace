@@ -69,17 +69,19 @@ class _OfferPageState extends State<OfferPage> {
   }
 
   void blocListener(BuildContext context, OfferState state) {
+    if (state.hasError) {
+      Utils.showCustomDialog(
+        context,
+        title: AppMessages.error,
+        description: AppMessages.serverError,
+        onPressed: () => Navigator.pop(context),
+      );
+    }
+
     if (state.purchaseResponse != null) {
       final purchaseResponse = state.purchaseResponse!;
 
-      if (state.hasError) {
-        Utils.showCustomDialog(
-          context,
-          title: AppMessages.error,
-          description: AppMessages.serverError,
-          onPressed: () => Navigator.pop(context),
-        );
-      } else if (purchaseResponse.success) {
+      if (purchaseResponse.success) {
         Utils.showCustomDialog(
           context,
           title: AppMessages.success,
