@@ -146,6 +146,7 @@ class _ProductDetailsBodyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
+        alignment: Alignment.topCenter,
         child: SingleChildScrollView(
           child: Column(
             children: [
