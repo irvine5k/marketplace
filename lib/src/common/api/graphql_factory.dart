@@ -15,7 +15,7 @@ class GraphQlClientFactory {
       );
 
   GraphQLClient _createBluGraphQlClient(String serverAddress) {
-    final httpLink = HttpLink('$serverAddress/query');
+    final httpLink = HttpLink(serverAddress);
 
     final authLink = AuthLink(getToken: tokenRepository.getToken);
 
