@@ -85,6 +85,12 @@ class _OfferPageState extends State<OfferPage> {
         Utils.showCustomDialog(
           context,
           title: AppMessages.success,
+          description: AppMessages.purchaseSuccessDescription(
+            name: widget.offer.product.name,
+            price: Utils.formatToMonetaryValueFromInteger(
+              widget.offer.price,
+            ),
+          ),
           onPressed: () {
             Navigator.pop(context);
             Navigator.pop<CustomerModel>(

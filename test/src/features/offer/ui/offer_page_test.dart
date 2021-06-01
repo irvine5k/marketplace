@@ -69,9 +69,11 @@ void main() {
 
       await tester.pump();
 
+      final offer = _customer.offers.first;
+
       final buyNowText = AppMessages.buyNow(
         Utils.formatToMonetaryValueFromInteger(
-          _customer.offers.first.price,
+          offer.price,
         ),
       );
 
@@ -82,6 +84,17 @@ void main() {
       await tester.pump();
 
       expect(find.text(AppMessages.success), findsOneWidget);
+      expect(
+        find.text(
+          AppMessages.purchaseSuccessDescription(
+            name: offer.product.name,
+            price: Utils.formatToMonetaryValueFromInteger(
+              offer.price,
+            ),
+          ),
+        ),
+        findsOneWidget,
+      );
     },
   );
 
