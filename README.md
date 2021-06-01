@@ -51,11 +51,13 @@ You can learn more about Widget Testing here:
 
 **Debug**
 ```
+flutter pub get
 flutter run
 ```
 
 **Release**
 ```
+flutter pub get
 flutter run --release
 ```
 
