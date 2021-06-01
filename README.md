@@ -60,7 +60,8 @@ flutter run --release
 ```
 
 **Profile**
-You want to run in profile mode to check the performance.
+
+If you want to run in profile mode to check the performance.
 
 Follow this documentation:
 - [Flutter Performance Profiling](https://flutter.dev/docs/perf/rendering/ui-performance) 
